@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Inst Minsta</title>
+<link rel="stylesheet" href="style.min.css">
+</head>
+
+<body>
+    <div id="camera">
+        <video id="video-preview">Video stream not available.</video>
+    </div>
+
+    <footer>
+        <div id="camera-buttons">
+            <button id="switch-camera">🔄</button>
+            <button id="snap"></button>
+        </div>
+        
+        <div id="filter-selection">
+            <input id="filter-none" type="radio" name="filter" value="None" checked />
+            <label for="filter-none">No Filter</label>
+        </div>
+    </footer>
+
+<canvas hidden></canvas>
+<a id="photo" download hidden></a>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

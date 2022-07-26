@@ -72,12 +72,15 @@ snap.addEventListener('click', function(e){
     let x = (canvas.width / 2) - (videoWidth / 2) * scale;
     let y = (canvas.height / 2) - (videoHeight / 2) * scale;
 
+    // disable image smoothening bcuz it sucks
+    ctx.imageSmoothingEnabled = false;
+
     // add video frame to canvas
     ctx.drawImage(video, x, y, videoWidth * scale, videoHeight * scale);
 
     // apply overlays to canvas
     applyOverlay(getComputedStyle(videoContainer, '::before'));
-    applyOverlay(getComputedStyle(videoContainer, '::after'));    
+    applyOverlay(getComputedStyle(videoContainer, '::after'));
 
     // covert canvas to dataURL
     const data = canvas.toDataURL('image/jpeg', 1.0);

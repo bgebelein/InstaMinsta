@@ -87,6 +87,10 @@ footer{
       padding: .5rem 1rem;
       flex-shrink: 0;
       text-align: center;
+
+      &::first-letter{
+        text-transform: uppercase;
+      }
     }
   
     input[type=radio]{

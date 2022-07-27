@@ -24,7 +24,7 @@ body{
   position: relative;
   overflow: hidden;
   top: 50vh;
-  transform: translateY(-50%);
+  transform: translateY(-55%);
     
   #video-preview {
     min-height: 100%;
@@ -38,7 +38,6 @@ footer{
   position: fixed;
   max-width: 100%;
   bottom: 0;
-  padding-bottom: 1rem;
 
   #camera-buttons{
     max-width: 320px;
@@ -46,7 +45,6 @@ footer{
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
     margin: 1rem auto;
-    transform: translateY(-50%);
 
     button{
       background: none;

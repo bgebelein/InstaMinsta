@@ -94,9 +94,11 @@ snap.addEventListener('click', function(e){
     const data = canvas.toDataURL('image/jpeg', 0.7);
 
     // save image
+    let timestamp = Date.now();
+    photo.download = 'IMG_' + timestamp.getFullYear() + '-' + timestamp.getMonth() + 1 + '-' + timestamp.getDate() + '_' + timestamp.getHours() + '-' + timestamp.getMinutes() + '-' + timestamp.getSeconds() + '.jpg';
     photo.setAttribute('href', data);
     photo.click();
-    e.preventDefault();
+
 }, false);
 
 // Filters

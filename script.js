@@ -167,7 +167,6 @@ filterSelect.addEventListener('click', function(){
     }
 }, false);
 
-
 // apply overlay function
 function applyOverlay(overlayElement){
     // set blendmode

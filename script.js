@@ -1,11 +1,12 @@
 const videoContainer = document.querySelector('#camera');
 const video = document.querySelector('#video-preview');
 const canvas = document.querySelector('canvas');
+let camera = 'user'; 
 let videoWidth = 0;
 let videoHeight = 0;
 
 // Start video
-function initiateCamera (camera = 'user') {
+function initiateCamera (camera) {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
@@ -50,13 +51,16 @@ cameraSwitch.addEventListener('click', function() {
         track.stop();
     });
     video.srcObject = null;
+    console.log('Videostream stopped');
       
     // Switch facingmode
     switch (camera){
         case 'user':
+            console.log('Facingmode changed to environment');
             initiateCamera('environment');
             break;
         case 'environment':
+            console.log('Facingmode changed to User');
             initiateCamera('user');
             break;
     }

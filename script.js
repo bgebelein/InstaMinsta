@@ -46,24 +46,20 @@ initiateCamera();
 const cameraSwitch = document.querySelector('#switch-camera');
 cameraSwitch.addEventListener('click', function() {
     // Stop stream
-    const tracks = video.srcObject.getTracks();
-    tracks.forEach(function(track) {
-        track.stop();
-    });
-    video.srcObject = null;
-    console.log('Videostream stopped');
-      
-    // Switch facingmode
-    switch (camera){
-        case 'user':
-            console.log('Facingmode changed to environment');
-            initiateCamera('environment');
-            break;
-        case 'environment':
-            console.log('Facingmode changed to User');
-            initiateCamera('user');
-            break;
+    if (video.srcObject) {
+        const tracks = video.srcObject.getTracks();
+        tracks.forEach(function(track) {
+            track.stop();
+        });
+        video.srcObject = null;
+        console.log('Videostream stopped');
     }
+    
+    // Switch facingmode
+    camera === 'user' ? camera = 'environment' : camera = 'user';
+    console.log('Facingmode: ' + camera);
+
+    initiateCamera(camera);
 });
 
 // Take snapshot

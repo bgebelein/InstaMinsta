@@ -1,20 +1,26 @@
 const videoContainer = document.querySelector('#camera');
 const video = document.querySelector('#video-preview');
 const canvas = document.querySelector('canvas');
-let camera = 'user';
+let camera = 'environment';
 let torch = false;
 let videoWidth = 0;
 let videoHeight = 0;
+
+// iOS Safari workaround for stretched image
+let is_ios = /iP(ad|od|hone)/i.test(window.navigator.userAgent);
+let is_safari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
 
 // Start camera
 function initiateCamera () {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-            width: {ideal: 4096},
-            height: {ideal: 4096},
+            width: {ideal: is_ios && is_safari ? 1024 : 4096},
+            height: {ideal: is_ios && is_safari ? 1024 : 4096},
             facingMode: camera,
-            torch: torch
+            advanced: [{
+                torch: torch,
+            }]
         }
     })
     .then(function(mediaStream) {
@@ -26,12 +32,26 @@ function initiateCamera () {
 
         // Get stream track
         let stream = mediaStream.getVideoTracks()[0];
+        videoWidth = stream.getSettings().width;
+        videoHeight = stream.getSettings().height;
+
+        // Implement torch functionality
+        const torchToggle = document.querySelector('#toggle-torch');
+        torchToggle.addEventListener('click', function() {
+            torch === false ? torch = true : torch = false;
+            stream.applyConstraints({
+                advanced: [{
+                    torch: torch,
+                }]
+            });
+            console.log('Torch: ' + (torch ? 'On' : 'Off'));
+        });
     
         // log actual width & height of the camera video
-        console.log('Camera Resolution: ' + stream.getSettings().width + 'x' + stream.getSettings().height);
+        console.log('Camera Resolution: ' + videoWidth + 'x' + videoHeight);
 
         // Setup canvas
-        canvas.height = parseInt(stream.getSettings().height < stream.getSettings().width ? stream.getSettings().height : stream.getSettings().width);
+        canvas.height = parseInt(videoHeight < videoWidth ? videoHeight : videoWidth);
         canvas.width = canvas.height;
         console.log('Canvas size: ' + canvas.height + 'x' + canvas.width);
     })
@@ -54,15 +74,6 @@ function stopCamera(){
     }
 }
 
-// Toggle flash/torch
-const torchToggle = document.querySelector('#toggle-torch');
-torchToggle.addEventListener('click', function() {
-    stopCamera();
-    torch === false ? torch = true : torch = false;
-    console.log('Torch: ' + (torch ? 'On' : 'Off'));
-    initiateCamera();
-});
-
 // Switch camera facingmode
 const cameraSwitch = document.querySelector('#switch-camera');
 cameraSwitch.addEventListener('click', function() {
@@ -84,24 +95,29 @@ snap.addEventListener('click', function(e){
     // apply filter to canvas
     let filter = getComputedStyle(videoContainer).filter;
     ctx.filter = filter;
-
+    
     // Get scale factor for videoframe to fill square canvas
-    let scale = Math.max(canvas.width / videoWidth, canvas.height / videoHeight);
-    let x = (canvas.width / 2) - (videoWidth / 2) * scale;
-    let y = (canvas.height / 2) - (videoHeight / 2) * scale;
+    let x = 0;
+    let y = 0;
+    let scale = Math.max(videoHeight - videoWidth, videoWidth - videoHeight);
+    if (videoHeight > videoWidth) {
+        y = scale / -2;
+    } else {
+        x = scale / -2;
+    }
 
     // disable image smoothening bcuz it sucks
     ctx.imageSmoothingEnabled = false;
 
     // add video frame to canvas
-    ctx.drawImage(video, x, y, videoWidth * scale, videoHeight * scale);
+    ctx.drawImage(video, x, y, videoWidth, videoHeight);
 
     // apply overlays to canvas
     applyOverlay(getComputedStyle(videoContainer, '::before'));
     applyOverlay(getComputedStyle(videoContainer, '::after'));
 
     // covert canvas to dataURL
-    const data = canvas.toDataURL('image/jpeg', 0.7);
+    const image = canvas.toDataURL('image/jpeg', 0.7);
 
     // save image
     let timestamp = new Date(Date.now());
@@ -115,7 +131,7 @@ snap.addEventListener('click', function(e){
     }
 
     photo.download = 'IMG_' + timestamp.year + '-' + timestamp.month + '-' + timestamp.day + '_' + timestamp.hour + '-' + timestamp.min + '-' + timestamp.sec + '.jpg';
-    photo.setAttribute('href', data);
+    photo.setAttribute('href', image);
     photo.click();
 
 }, false);

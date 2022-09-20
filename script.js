@@ -106,7 +106,10 @@ snap.addEventListener('click', function(e){
     // apply filter to canvas
     let filter = getComputedStyle(videoContainer).filter;
     ctx.filter = filter;
-    
+
+    // disable image smoothening bcuz it sucks
+    ctx.imageSmoothingEnabled = false;
+
     // Get scale factor for videoframe to fill square canvas
     let x = 0;
     let y = 0;
@@ -116,9 +119,6 @@ snap.addEventListener('click', function(e){
     } else {
         x = scale / -2;
     }
-
-    // disable image smoothening bcuz it sucks
-    ctx.imageSmoothingEnabled = false;
 
     // add video frame to canvas
     ctx.drawImage(video, x, y, videoWidth, videoHeight);

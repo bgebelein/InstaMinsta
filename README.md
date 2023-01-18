@@ -1,6 +1,6 @@
 # InstaMinsta
 
-Attempt to build my own Instagram Camrea App with <s>Blackjack and Hookers</s> filters.
+Attempt to build my own Instagram Camrea App with <s>Blackjack and Hookers</s> fancy filters.
 
 ![Bender](https://i.kym-cdn.com/entries/icons/original/000/010/832/bender.jpg)
 

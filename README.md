@@ -18,6 +18,10 @@ Recreated the filters in HTML Canvas for the final image.
 
 ## Demo
 
+UI:
+
+![https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/ui.webp](https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/ui.webp)
+
 Torch:
 
 ![https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/torch.gif](https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/torch.gif)

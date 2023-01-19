@@ -20,7 +20,7 @@ Recreated the filters in HTML Canvas for the final image.
 
 UI:
 
-![https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/ui.webp](https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/ui.webp)
+<img src="https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/ui.webp" title="" alt="https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/ui.webp" data-align="center">
 
 Torch:
 

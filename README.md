@@ -8,6 +8,11 @@ Relying on [CSSGRam](https://una.im/CSSgram/) CSS filters for the Camera Preview
 
 Recreated the filters in HTML Canvas for the final image.
 
+## Demo
+
+[Take it for a test ride!](https://bgebelein.github.io/instaminsta/)
+
+
 ## Features
 
 - Supports back- and frontfacing camera

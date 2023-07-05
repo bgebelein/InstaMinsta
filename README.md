@@ -12,7 +12,6 @@ Recreated the filters in HTML Canvas for the final image.
 
 [Take it for a test ride!](https://bgebelein.github.io/instaminsta/)
 
-
 ## Features
 
 - Supports back- and frontfacing camera

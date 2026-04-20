@@ -23,7 +23,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tw-watch": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --watch",
-    "minify-css": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --minify"
+    "minify-css": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --minify",
+    "build": "npm run minify-css"
   },
   "devDependencies": {
     "prettier": "^3.8.3",

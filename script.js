@@ -34,6 +34,7 @@ function initiateCamera () {
         let stream = mediaStream.getVideoTracks()[0];
         videoWidth = stream.getSettings().width;
         videoHeight = stream.getSettings().height;
+        console.log('Camera Resolution: ' + videoWidth + 'x' + videoHeight);
 
         // Implement torch functionality
         const torchToggle = document.querySelector('#toggle-torch');
@@ -58,9 +59,6 @@ function initiateCamera () {
             }
         });
     
-        // log actual width & height of the camera video
-        console.log('Camera Resolution: ' + videoWidth + 'x' + videoHeight);
-
         // Setup canvas
         canvas.height = parseInt(videoHeight < videoWidth ? videoHeight : videoWidth);
         canvas.width = canvas.height;
@@ -127,8 +125,8 @@ snap.addEventListener('click', function(e){
     applyOverlay(getComputedStyle(videoContainer, '::before'));
     applyOverlay(getComputedStyle(videoContainer, '::after'));
 
-    // covert canvas to dataURL
-    const image = canvas.toDataURL('image/jpeg', 0.7);
+    // convert canvas to dataURL
+    const image = canvas.toDataURL('image/jpeg', 0.8);
 
     // save image
     let timestamp = new Date(Date.now());
@@ -152,71 +150,77 @@ snap.addEventListener('click', function(e){
 const filterSelect = document.querySelector('#filter-selection');
 
 const filters = [
-    "filter-1977",
-    "filter-aden",
-    "filter-amaro",
-    "filter-ashby",
-    "filter-brannan",
-    "filter-brooklyn",
-    "filter-charmes",
-    "filter-clarendon",
-    "filter-crema",
-    "filter-dogpatch",
-    "filter-earlybird",
-    "filter-gingham",
-    "filter-ginza",
-    "filter-hefe",
-    "filter-helena",
-    "filter-hudson",
-    "filter-inkwell",
-    "filter-kelvin",
-    "filter-juno",
-    "filter-lark",
-    "filter-lofi",
-    "filter-ludwig",
-    "filter-maven",
-    "filter-mayfair",
-    "filter-moon",
-    "filter-nashville",
-    "filter-perpetua",
-    "filter-poprocket",
-    "filter-reyes",
-    "filter-rise",
-    "filter-sierra",
-    "filter-skyline",
-    "filter-slumber",
-    "filter-stinson",
-    "filter-sutro",
-    "filter-toaster",
-    "filter-valencia",
-    "filter-vesper",
-    "filter-walden",
-    "filter-willow",
-    "filter-xpro-ii"
+    {"label": "None", "class": "none"},
+    {"label": "1977", "class": "filter-1977"},
+    {"label": "Aden", "class": "filter-aden"},
+    {"label": "Amaro", "class": "filter-amaro"},
+    {"label": "Ashby", "class": "filter-ashby"},
+    {"label": "Brannan", "class": "filter-brannan"},
+    {"label": "Brooklyn", "class": "filter-brooklyn"},
+    {"label": "Charmes", "class": "filter-charmes"},
+    {"label": "Clarendon", "class": "filter-clarendon"},
+    {"label": "Crema", "class": "filter-crema"},
+    {"label": "Dogpatch", "class": "filter-dogpatch"},
+    {"label": "Earlybird", "class": "filter-earlybird"},
+    {"label": "Gingham", "class": "filter-gingham"},
+    {"label": "Ginza", "class": "filter-ginza"},
+    {"label": "Hefe", "class": "filter-hefe"},
+    {"label": "Helena", "class": "filter-helena"},
+    {"label": "Hudson", "class": "filter-hudson"},
+    {"label": "Inkwell", "class": "filter-inkwell"},
+    {"label": "Kelvin", "class": "filter-kelvin"},
+    {"label": "Juno", "class": "filter-juno"},
+    {"label": "Lark", "class": "filter-lark"},
+    {"label": "Lofi", "class": "filter-lofi"},
+    {"label": "Ludwig", "class": "filter-ludwig"},
+    {"label": "Maven", "class": "filter-maven"},
+    {"label": "Mayfair", "class": "filter-mayfair"},
+    {"label": "Moon", "class": "filter-moon"},
+    {"label": "Nashville", "class": "filter-nashville"},
+    {"label": "Perpetua", "class": "filter-perpetua"},
+    {"label": "Poprocket", "class": "filter-poprocket"},
+    {"label": "Reyes", "class": "filter-reyes"},
+    {"label": "Rise", "class": "filter-rise"},
+    {"label": "Sierra", "class": "filter-sierra"},
+    {"label": "Skyline", "class": "filter-skyline"},
+    {"label": "Slumber", "class": "filter-slumber"},
+    {"label": "Stinson", "class": "filter-stinson"},
+    {"label": "Sutro", "class": "filter-sutro"},
+    {"label": "Toaster", "class": "filter-toaster"},
+    {"label": "Valencia", "class": "filter-valencia"},
+    {"label": "Vesper", "class": "filter-vesper"},
+    {"label": "Walden", "class": "filter-walden"},
+    {"label": "Willow", "class": "filter-willow"},
+    {"label": "xPro II", "class": "filter-xpro-ii"}
 ]
 
+// Generate filter selection buttons
 filters.forEach(function(filter){
     let label = document.createElement('label');
-    label.setAttribute('for', filter);
-    label.textContent = filter.replace('filter-', '');
+    label.setAttribute('for', filter.class);
+    label.textContent = filter.label;
 
     let input = document.createElement('input');
     input.setAttribute('type', 'radio');
-    input.setAttribute('id', filter);
+    input.setAttribute('id', filter.class);
     input.setAttribute('name', 'filter');
-    input.setAttribute('value', filter);
+    input.setAttribute('value', filter.class);
 
     filterSelect.appendChild(input);
     filterSelect.appendChild(label);
 });
 
-// Set filter on video preview
+// Set default filter to "None"
+filterSelect.firstChild.checked = true;
 
+// Set filter on video preview
 filterSelect.addEventListener('click', function(){
     let seletctedFilter = document.querySelector('input[type=radio]:checked').value;
-    videoContainer.className = '';
+    console.log(seletctedFilter);
 
-    if (filterSelect.value === "None") {
+    videoContainer.classList.remove(...filters.map(f => f.class));
+
+    if (filterSelect.value === "") {
         return;
     } else {
         videoContainer.classList.add(seletctedFilter);

@@ -1,0 +1,33 @@
+{
+  "name": "instaminsta",
+  "version": "1.0.0",
+  "description": "Instagram like camra app.",
+  "keywords": [
+    "instagram",
+    "camera",
+    "app",
+    "pwa"
+  ],
+  "homepage": "https://github.com/bgebelein/InstaMinsta#readme",
+  "bugs": {
+    "url": "https://github.com/bgebelein/InstaMinsta/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgebelein/InstaMinsta.git"
+  },
+  "license": "ISC",
+  "author": "Bent Gebelein",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "tailwind-scrollbar": "^4.0.2"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}

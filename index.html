@@ -1,53 +1,92 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>InstaMinsta</title>
+    <link rel="stylesheet" href="style.min.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="images/favicon/safari-pinned-tab.svg"
+      color="#000000"
+    />
+    <meta name="apple-mobile-web-app-title" content="InstaMinsta" />
+    <meta name="application-name" content="InstaMinsta" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-<head>
-<meta charset="UTF-8">
-<title>InstaMinsta</title>
-<link rel="stylesheet" href="style.min.css">
-<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-<link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#000000">
-<meta name="apple-mobile-web-app-title" content="InstaMinsta">
-<meta name="application-name" content="InstaMinsta">
-<meta name="msapplication-TileColor" content="#000000">
-<meta name="theme-color" content="#000000">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-    <div id="camera">
-        <video id="video-preview" muted playsinline>Video stream not available.</video>
-        <div id="grid"></div>
+  <body class="bg-black">
+    <div id="camera" class="max-h-screen aspect-square mx-auto relative translate-y-1/3 sm:translate-0">
+      <video id="video-preview" muted playsinline>
+        Video stream not available.
+      </video>
+      <div
+        id="grid"
+        class="absolute left-0 top-0 size-full before:block before:w-1/3 before:h-full before:border-x before:border-white/35 before:absolute before:left-1/3 after:block after:h-1/3 after:w-full after:border-y after:border-white/35 after:absolute after:top-1/3"
+      ></div>
     </div>
 
-    <footer>
-        <div id="filter-selection">
-            <input id="filter-none" type="radio" name="filter" value="None" checked="checked" />
-            <label for="filter-none">No Filter</label>
-        </div>
+    <footer class="container fixed bottom-0 left-1/2 -translate-x-1/2">
+      <div
+        id="filter-selection"
+        class="flex items-center gap-3 px-3 overflow-x-scroll scrollbar-none"
+      ></div>
 
-        <div id="camera-buttons">
-            <button id="switch-camera" aria-label="Switch Camera">
-                <iconify-icon icon="lucide:switch-camera" width="24" height="24" style="color: #fff;"></iconify-icon>              
-            </button>
-            <button id="snap" aria-label="Take Snapshot"></button>
-            <button id="toggle-torch" aria-label="Toggle Torch">
-                <iconify-icon icon="lucide:zap" width="24" height="24" style="color: #fff;"></iconify-icon>
-            </button>
-        </div>
+      <div
+        id="camera-buttons"
+        class="flex items-center justify-evenly py-12 *:cursor-pointer *:transition-opacity *:hover:opacity-80"
+      >
+        <button id="switch-camera" aria-label="Switch Camera">
+          <iconify-icon
+            icon="lucide:switch-camera"
+            width="24"
+            height="24"
+            class="text-white"
+          ></iconify-icon>
+        </button>
+
+        <button
+          id="snap"
+          class="size-14 bg-white outline-offset-3 outline-2 outline-white rounded-full active:bg-white/60"
+          aria-label="Take Snapshot"
+        ></button>
+
+        <button id="toggle-torch" aria-label="Toggle Torch">
+          <iconify-icon
+            icon="lucide:zap"
+            width="24"
+            height="24"
+            class="text-white"
+          ></iconify-icon>
+        </button>
+      </div>
     </footer>
 
-<canvas hidden></canvas>
-<a id="photo" download hidden></a>
+    <canvas hidden></canvas>
+    <a id="photo" download hidden></a>
 
-<!-- Iconify Web Component -->
-<script src="https://code.iconify.design/iconify-icon/3.0.2/iconify-icon.min.js"></script>
-<!-- Main JavaScript -->
-<script src="script.js"></script>
-
-</body>
-
+    <!-- Iconify Web Component -->
+    <script src="https://code.iconify.design/iconify-icon/3.0.2/iconify-icon.min.js"></script>
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+  </body>
 </html>

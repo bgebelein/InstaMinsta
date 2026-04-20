@@ -6,17 +6,14 @@ let torch = false;
 let videoWidth = 0;
 let videoHeight = 0;
 
-// iOS Safari workaround for stretched image
-let is_ios = /iP(ad|od|hone)/i.test(window.navigator.userAgent);
-let is_safari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-
 // Start camera
 function initiateCamera () {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-            width: {ideal: is_ios && is_safari ? 1024 : 4096},
-            height: {ideal: is_ios && is_safari ? 1024 : 4096},
+            width: { min: 1024, ideal: 4096, max: 4006 },
+            height: { min: 1024, ideal: 4096, max: 4006 },
+            resizeMode: "crop-and-scale",
             facingMode: camera,
             advanced: [{
                 torch: torch,

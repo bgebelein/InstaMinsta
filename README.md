@@ -39,3 +39,12 @@ Filters:
 - Filters won't show on the final image, if a mobile Apple device was used to take the picture, since mobile Safari does not support the HTML CanvasRenderingContext2D filters.
 
 - Torch light cannot be switched reliably
+
+## Development
+
+This project uses
+- [Tailwind CSS v4](https://tailwindcss.com/)
+
+### Start the Tailwind CLI build process
+
+```npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch --minify```

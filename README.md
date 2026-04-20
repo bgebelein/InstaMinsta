@@ -45,6 +45,10 @@ Filters:
 This project uses
 - [Tailwind CSS v4](https://tailwindcss.com/)
 
-### Start the Tailwind CLI build process
+### Run Tailwind CLI build process with `--watch` parameter
 
-```npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch --minify```
+`npm run tw-watch`
+
+### Run Tailwind CLI build process with `--minify` parameter
+
+`npm run minify-css`

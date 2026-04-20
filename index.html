@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
 <meta charset="UTF-8">
@@ -30,25 +30,12 @@
         </div>
 
         <div id="camera-buttons">
-            <button id="switch-camera">
-                <svg id="flip_camera_android-24px" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <g id="Bounding_Box">
-                      <rect id="Rechteck_330" data-name="Rechteck 330" width="24" height="24" fill="none"/>
-                    </g>
-                    <g id="Master">
-                      <g id="Gruppe_500" data-name="Gruppe 500" fill="#fff">
-                        <path id="Pfad_6476" data-name="Pfad 6476" d="M9,12a3,3,0,1,0,3-3A3,3,0,0,0,9,12Zm4,0a1,1,0,1,1-1-1A1,1,0,0,1,13,12Z"/>
-                        <path id="Pfad_6477" data-name="Pfad 6477" d="M8,10V8H5.09a7.982,7.982,0,0,1,14.65,2H21.8A10,10,0,0,0,4,6.01V4H2v6Z"/>
-                        <path id="Pfad_6478" data-name="Pfad 6478" d="M16,14v2h2.91A7.982,7.982,0,0,1,4.26,14H2.2A10,10,0,0,0,20,17.99V20h2V14Z"/>
-                      </g>
-                    </g>
-                  </svg>                  
+            <button id="switch-camera" aria-label="Switch Camera">
+                <iconify-icon icon="lucide:switch-camera" width="24" height="24" style="color: #fff;"></iconify-icon>              
             </button>
-            <button id="snap"></button>
-            <button id="toggle-torch">
-                <svg xmlns="http://www.w3.org/2000/svg" id="mdi-flash" width="24" height="24" version="1.1" viewBox="0 0 24 24">
-                    <path d="M7,2V13H10V22L17,10H13L17,2H7Z" fill="#fff" />
-                </svg>
+            <button id="snap" aria-label="Take Snapshot"></button>
+            <button id="toggle-torch" aria-label="Toggle Torch">
+                <iconify-icon icon="lucide:zap" width="24" height="24" style="color: #fff;"></iconify-icon>
             </button>
         </div>
     </footer>
@@ -56,6 +43,9 @@
 <canvas hidden></canvas>
 <a id="photo" download hidden></a>
 
+<!-- Iconify Web Component -->
+<script src="https://code.iconify.design/iconify-icon/3.0.2/iconify-icon.min.js"></script>
+<!-- Main JavaScript -->
 <script src="script.js"></script>
 
 </body>

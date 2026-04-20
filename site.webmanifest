@@ -4,9 +4,9 @@
     "display" : "standalone",
     "start_url" : "https://bgebelein.github.io/instaminsta/",
     "scope": "https://bgebelein.github.io/instaminsta/",
-    "name" : "InstaMinsta",
-    "short_name" : "InstaMinsta",
-    "description" : "My own Instagram with Blackjack and Hookers.",
+    "name" : "Quadra Cam",
+    "short_name" : "Quadra Cam",
+    "description" : "Instagram like camera app, but without the bullshit.",
     "lang": "en-US",
     "icons": [
         {

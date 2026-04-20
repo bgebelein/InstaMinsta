@@ -1,0 +1,32 @@
+[debug] [2026-04-20T11:15:34.079Z] ----------------------------------------------------------------------
+[debug] [2026-04-20T11:15:34.082Z] Command:       /Users/bent/.nvm/versions/node/v22.12.0/bin/node /Users/bent/.nvm/versions/node/v22.12.0/bin/firebase deploy --only hosting
+[debug] [2026-04-20T11:15:34.082Z] CLI Version:   15.15.0
+[debug] [2026-04-20T11:15:34.082Z] Platform:      darwin
+[debug] [2026-04-20T11:15:34.082Z] Node Version:  v22.12.0
+[debug] [2026-04-20T11:15:34.082Z] Time:          Mon Apr 20 2026 13:15:34 GMT+0200 (Central European Summer Time)
+[debug] [2026-04-20T11:15:34.082Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-20T11:15:36.503Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-20T11:15:36.503Z] > authorizing via signed-in user (bent.gebelein@gmail.com)
+[debug] [2026-04-20T11:15:36.503Z] [iam] checking project quadra-cam for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-20T11:15:36.504Z] Checked if tokens are valid: true, expires at: 1776686399945
+[debug] [2026-04-20T11:15:36.504Z] Checked if tokens are valid: true, expires at: 1776686399945
+[debug] [2026-04-20T11:15:36.504Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/quadra-cam:testIamPermissions [none]
+[debug] [2026-04-20T11:15:36.504Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/quadra-cam:testIamPermissions  x-goog-user-project=quadra-cam
+[debug] [2026-04-20T11:15:36.504Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/quadra-cam:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-20T11:15:37.335Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/quadra-cam:testIamPermissions 200
+[debug] [2026-04-20T11:15:37.335Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/quadra-cam:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-20T11:15:37.335Z] Checked if tokens are valid: true, expires at: 1776686399945
+[debug] [2026-04-20T11:15:37.335Z] Checked if tokens are valid: true, expires at: 1776686399945
+[debug] [2026-04-20T11:15:37.336Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/quadra-cam [none]
+[debug] [2026-04-20T11:15:37.742Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/quadra-cam 200
+[debug] [2026-04-20T11:15:37.742Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/quadra-cam {"projectId":"quadra-cam","projectNumber":"53560151288","displayName":"quadra-cam","name":"projects/quadra-cam","resources":{"hostingSite":"quadra-cam"},"state":"ACTIVE","etag":"1_4e42ddf4-00bc-49d4-942c-6f447c271728"}
+[info] 
+[info] === Deploying to 'quadra-cam'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-04-20T11:15:37.743Z] Checked if tokens are valid: true, expires at: 1776686399945
+[debug] [2026-04-20T11:15:37.743Z] Checked if tokens are valid: true, expires at: 1776686399945
+[debug] [2026-04-20T11:15:37.743Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quadra-cam/versions [none]
+[debug] [2026-04-20T11:15:37.744Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quadra-cam/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-04-20T11:15:41.326Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quadra-cam/versions 200

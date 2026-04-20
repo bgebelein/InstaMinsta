@@ -49,6 +49,8 @@ This project uses
 
 `npm run tw-watch`
 
-### Run Tailwind CLI build process with `--minify` parameter
+### Create production build
 
-`npm run minify-css`
+This will create a production ready app under the `public` directory.
+
+`npm run build`

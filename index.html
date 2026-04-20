@@ -35,20 +35,23 @@
   </head>
 
   <body class="bg-black">
-    <div id="camera" class="max-h-screen aspect-square mx-auto relative translate-y-1/3 sm:translate-0">
+    <div
+      id="camera"
+      class="relative mx-auto aspect-square max-h-screen translate-y-1/3 sm:translate-0"
+    >
       <video id="video-preview" muted playsinline>
         Video stream not available.
       </video>
       <div
         id="grid"
-        class="absolute left-0 top-0 size-full before:block before:w-1/3 before:h-full before:border-x before:border-white/35 before:absolute before:left-1/3 after:block after:h-1/3 after:w-full after:border-y after:border-white/35 after:absolute after:top-1/3"
+        class="absolute top-0 left-0 size-full before:absolute before:left-1/3 before:block before:h-full before:w-1/3 before:border-x before:border-white/35 after:absolute after:top-1/3 after:block after:h-1/3 after:w-full after:border-y after:border-white/35"
       ></div>
     </div>
 
-    <footer class="container fixed bottom-0 left-1/2 -translate-x-1/2">
+    <footer class="fixed bottom-0 left-1/2 container -translate-x-1/2">
       <div
         id="filter-selection"
-        class="flex items-center gap-3 px-3 overflow-x-scroll scrollbar-none"
+        class="scrollbar-none flex items-center gap-3 overflow-x-scroll px-3"
       ></div>
 
       <div
@@ -66,7 +69,7 @@
 
         <button
           id="snap"
-          class="size-14 bg-white outline-offset-3 outline-2 outline-white rounded-full active:bg-white/60"
+          class="size-14 rounded-full bg-white outline-2 outline-offset-3 outline-white active:bg-white/60"
           aria-label="Take Snapshot"
         ></button>
 

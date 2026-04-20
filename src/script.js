@@ -214,18 +214,23 @@ filters.forEach(function(filter){
 filterSelect.firstChild.checked = true;
 
 // Set filter on video preview
-filterSelect.addEventListener('click', function(){
-    let seletctedFilter = document.querySelector('input[type=radio]:checked').value;
-    console.log(seletctedFilter);
 
-    videoContainer.classList.remove(...filters.map(f => f.class));
+const filterButtons = document.querySelectorAll('input[name="filter"]');
 
-    if (filterSelect.value === "") {
-        return;
-    } else {
-        videoContainer.classList.add(seletctedFilter);
-    }
-}, false);
+filterButtons.forEach(function(button){
+    button.addEventListener('change', function(){
+        let seletctedFilter = document.querySelector('input[name="filter"]:checked').value;
+        console.log("Selected filter: " + seletctedFilter);
+
+        videoContainer.classList.remove(...filters.map(f => f.class));
+
+        if (filterSelect.value === "") {
+            return;
+        } else {
+            videoContainer.classList.add(seletctedFilter);
+        }
+    }, false);
+});
 
 // apply overlay function
 function applyOverlay(overlayElement){

@@ -24,9 +24,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tw-watch": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --watch",
     "minify-css": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --minify",
-    "build": "npm run minify-css"
+    "build": "rm -f ./public/* && npm run minify-css && copyfiles -u 1 ./src/* ./public && rm -f ./public/styles.css"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwind-scrollbar": "^4.0.2"

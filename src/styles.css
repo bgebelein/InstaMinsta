@@ -20,17 +20,7 @@ label {
 /* ------------------------------ Filter ------------------------------ */
 
 [class*="filter"] {
-    &::before {
-        content: "";
-        display: block;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 1;
-    }
-
+    &::before,
     &::after {
         content: "";
         display: block;
@@ -39,7 +29,7 @@ label {
         position: absolute;
         left: 0;
         top: 0;
-        z-index: 2;
+        z-index: 1;
     }
 
     &.filter-1977 {

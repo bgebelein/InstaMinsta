@@ -136,7 +136,7 @@ snap.addEventListener('click', function(e){
 
     photo.download = 'IMG_' + timestamp.year + '-' + timestamp.month + '-' + timestamp.day + '_' + timestamp.hour + '-' + timestamp.min + '-' + timestamp.sec + '.jpg';
     photo.setAttribute('href', image);
-    // photo.click();
+    photo.click();
 
 }, false);
 

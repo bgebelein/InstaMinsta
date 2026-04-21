@@ -11,8 +11,8 @@ function initiateCamera() {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-            width: { min: 1024, ideal: 4096, max: 4006 },
-            height: { min: 1024, ideal: 4096, max: 4006 },
+            width: { min: 1024, ideal: 4096, max: 4096 },
+            height: { min: 1024, ideal: 4096, max: 4096 },
             resizeMode: "crop-and-scale",
             facingMode: camera,
             advanced: [{

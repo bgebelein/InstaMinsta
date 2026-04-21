@@ -265,6 +265,9 @@
     --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
   .items-center {
     align-items: center;
   }

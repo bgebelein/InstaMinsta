@@ -6,17 +6,14 @@ let torch = false;
 let videoWidth = 0;
 let videoHeight = 0;
 
-// iOS Safari workaround for stretched image
-let is_ios = /iP(ad|od|hone)/i.test(window.navigator.userAgent);
-let is_safari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-
 // Start camera
 function initiateCamera () {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-            width: {ideal: is_ios && is_safari ? 1024 : 4096},
-            height: {ideal: is_ios && is_safari ? 1024 : 4096},
+            width: { min: 1024, ideal: 4096, max: 4006 },
+            height: { min: 1024, ideal: 4096, max: 4006 },
+            resizeMode: "crop-and-scale",
             facingMode: camera,
             advanced: [{
                 torch: torch,
@@ -108,18 +105,13 @@ snap.addEventListener('click', function(e){
     // disable image smoothening bcuz it sucks
     ctx.imageSmoothingEnabled = false;
 
-    // Get scale factor for videoframe to fill square canvas
-    let x = 0;
-    let y = 0;
-    let scale = Math.max(videoHeight - videoWidth, videoWidth - videoHeight);
-    if (videoHeight > videoWidth) {
-        y = scale / -2;
-    } else {
-        x = scale / -2;
-    }
-
-    // add video frame to canvas
-    ctx.drawImage(video, x, y, videoWidth, videoHeight);
+    // Center-crop video to fill square canvas
+    const squareSize = Math.min(videoWidth, videoHeight);
+    const sx = (videoWidth - squareSize) / 2;
+    const sy = (videoHeight - squareSize) / 2;
+    
+    // Draw cropped square from video center to fill canvas
+    ctx.drawImage(video, sx, sy, squareSize, squareSize, 0, 0, canvas.width, canvas.height);
 
     // apply overlays to canvas
     applyOverlay(getComputedStyle(videoContainer, '::before'));

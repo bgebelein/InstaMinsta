@@ -56,10 +56,11 @@ function initiateCamera () {
             }
         });
     
-        // Setup canvas
-        canvas.height = parseInt(videoHeight < videoWidth ? videoHeight : videoWidth);
-        canvas.width = canvas.height;
-        console.log('Canvas size: ' + canvas.height + 'x' + canvas.width);
+        // Setup canvas - square size matching the smaller video dimension
+        const squareSize = Math.min(videoWidth, videoHeight);
+        canvas.width = squareSize;
+        canvas.height = squareSize;
+        console.log('Canvas size: ' + canvas.width + 'x' + canvas.height);
     })
     .catch(function(error) {
         /* handle error */

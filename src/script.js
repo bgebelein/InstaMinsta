@@ -229,12 +229,8 @@ filterButtons.forEach(function(button){
 
 // apply overlay function
 function applyOverlay(overlayElement){
-    // set blendmode
-    ctx.globalCompositeOperation = overlayElement.mixBlendMode;
-
-    if(overlayElement.opacity !== 1){
-        ctx.globalAlpha = overlayElement.opacity;
-    }
+    // set opacity
+    ctx.globalAlpha = overlayElement.opacity;
 
     // set color and add rectangle to canvas
     ctx.fillStyle = overlayElement.backgroundColor;
@@ -276,5 +272,4 @@ function applyOverlay(overlayElement){
 
     // add colored rectangle to canvas
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.globalAlpha = 1;
 }

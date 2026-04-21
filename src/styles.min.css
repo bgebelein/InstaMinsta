@@ -297,6 +297,12 @@
   .bg-white {
     background-color: var(--color-white);
   }
+  .object-cover {
+    object-fit: cover;
+  }
+  .object-center {
+    object-position: center;
+  }
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }

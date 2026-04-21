@@ -40,9 +40,9 @@ Filters:
 
 Mobile Safari does not support HTML CanvasRenderingContext2D filters. As long as apple won't add support for this feature, this app does not work properly on devices using the mobile Safari browser engine.
 
-**Torch light cannot be switched reliably.**
+**I dont see the torch light button / The torch light does not work.**
 
-Until now i have not found the proper reason for this bug. Sometimes it works, sometimes not.
+As of today only mobile Chrome browsers support the torch.
 
 **The camera preview looks different compared to the final image.**
 

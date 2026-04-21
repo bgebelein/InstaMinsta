@@ -104,12 +104,6 @@ const ctx = canvas.getContext('2d');
 const photo = document.querySelector('#photo');
 
 snap.addEventListener('click', function (e) {
-    // Show flash on video preview
-    videoContainer.classList.add('animate-flash');
-    setTimeout(() => {
-        videoContainer.classList.remove('animate-flash');
-    }, 200);
-
     // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -131,6 +125,12 @@ snap.addEventListener('click', function (e) {
     // apply overlays to canvas
     applyOverlay(getComputedStyle(videoContainer, '::before'));
     applyOverlay(getComputedStyle(videoContainer, '::after'));
+
+    canvas.classList.add('z-10');
+    setTimeout(() => {
+        canvas.classList.remove('z-10');
+        canvas.classList.add('-z-10');
+    }, 1000);
 
     // convert canvas to dataURL
     const image = canvas.toDataURL('image/jpeg', 0.8);

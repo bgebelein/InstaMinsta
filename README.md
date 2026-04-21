@@ -61,8 +61,7 @@ This can happen on some filters. There are 2 main reasons for this:
 
 ## Development
 
-This project uses
-- [Tailwind CSS v4](https://tailwindcss.com/)
+This project uses [Tailwind CSS v4](https://tailwindcss.com/)
 
 ### Run Tailwind CLI build process with `--watch` parameter
 

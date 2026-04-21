@@ -105,18 +105,13 @@ snap.addEventListener('click', function(e){
     // disable image smoothening bcuz it sucks
     ctx.imageSmoothingEnabled = false;
 
-    // Get scale factor for videoframe to fill square canvas
-    let x = 0;
-    let y = 0;
-    let scale = Math.max(videoHeight - videoWidth, videoWidth - videoHeight);
-    if (videoHeight > videoWidth) {
-        y = scale / -2;
-    } else {
-        x = scale / -2;
-    }
-
-    // add video frame to canvas
-    ctx.drawImage(video, x, y, videoWidth, videoHeight);
+    // Center-crop video to fill square canvas
+    const squareSize = Math.min(videoWidth, videoHeight);
+    const sx = (videoWidth - squareSize) / 2;
+    const sy = (videoHeight - squareSize) / 2;
+    
+    // Draw cropped square from video center to fill canvas
+    ctx.drawImage(video, sx, sy, squareSize, squareSize, 0, 0, canvas.width, canvas.height);
 
     // apply overlays to canvas
     applyOverlay(getComputedStyle(videoContainer, '::before'));

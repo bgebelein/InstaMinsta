@@ -101,6 +101,9 @@ snap.addEventListener('click', function(e){
     // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // set opacity
+    ctx.globalAlpha = 1;
+
     // apply filter to canvas
     let filter = getComputedStyle(videoContainer).filter;
     ctx.filter = filter;

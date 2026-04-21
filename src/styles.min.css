@@ -282,12 +282,24 @@
   .max-w-sm {
     max-width: var(--container-sm);
   }
+  .shrink {
+    flex-shrink: 1;
+  }
+  .grow {
+    flex-grow: 1;
+  }
   .-translate-x-1\/2 {
     --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .touch-manipulation {
     touch-action: manipulation;
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+  .content-center {
+    align-content: center;
   }
   .items-center {
     align-items: center;
@@ -297,6 +309,9 @@
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
+  }
+  .gap-12 {
+    gap: calc(var(--spacing) * 12);
   }
   .truncate {
     overflow: hidden;

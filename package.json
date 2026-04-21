@@ -22,8 +22,10 @@
   "main": "index.html",
   "scripts": {
     "tw-watch": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --watch",
+    "minify-html": "html-minifier-terser --input-dir ./public --output-dir ./public --collapse-whitespace --remove-comments --sort-attributes --sort-class-name --file-ext html",
     "minify-css": "npx tailwindcss -i ./src/styles.css -o ./src/styles.min.css --minify",
-    "build": "npm run minify-css && cpy \"**/*\" ../public --cwd=src --update && rm -f ./public/styles.css"
+    "minify-js": "uglifyjs ./public/script.js --compress --mangle --output ./public/script.js ",
+    "build": "npm run minify-css && cpy \"**/*\" ../public --cwd=src --update && rm -f ./public/styles.css && npm run minify-html && npm run minify-js"
   },
   "devDependencies": {
     "cpy-cli": "^7.0.0",
@@ -33,6 +35,8 @@
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.2.2",
-    "tailwindcss": "^4.2.2"
+    "html-minifier-terser": "^7.2.0",
+    "tailwindcss": "^4.2.2",
+    "uglify-js": "^3.19.3"
   }
 }

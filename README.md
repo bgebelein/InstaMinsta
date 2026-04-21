@@ -34,11 +34,21 @@ Filters:
 
 ![https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/filter.webp](https://raw.githubusercontent.com/bgebelein/InstaMinsta/master/images/demo/filter.webp)
 
-## Known Issues
+## Known Issues and limitations
 
-- Filters won't show on the final image, if a mobile Apple device was used to take the picture, since mobile Safari does not support the HTML CanvasRenderingContext2D filters.
+**Filters do not work on mobile Safari browsers.**
 
-- Torch light cannot be switched reliably
+Mobile Safari does not support HTML CanvasRenderingContext2D filters. As long as apple won't add support for this feature, this app does not work properly on devices using the mobile Safari browser engine.
+
+**Torch light cannot be switched reliably.**
+
+Until now i have not found the proper reason for this bug. Sometimes it works, sometimes not.
+
+**The camera preview looks different compared to the final image.**
+
+This can happen on some filters. There are 2 main reasons for this:
+- CSS and Canvas perform calculations in different colour spaces.
+- Canvas and CSS handle transparency differently in blending calculations.
 
 ## Development
 

@@ -36,15 +36,19 @@ Filters:
 
 ## Known Issues and limitations
 
-**Filters do not work on mobile Safari browsers.**
+### Filters do not work on mobile Safari browsers.
 
-Mobile Safari does not support HTML CanvasRenderingContext2D filters. As long as apple won't add support for this feature, this app does not work properly on devices using the mobile Safari browser engine.
+Mobile Safari does not support `CanvasRenderingContext2D` filters by default, but you can activate them by going to:
 
-**I dont see the torch light button / The torch light does not work.**
+`Settings` > `Apps` > `Safari` > `Advanced` > `Feature Flags`
+
+There you can search for `Canvas Filters` and activate the toggle.
+
+### I dont see the torch light button / The torch light does not work.
 
 As of today only mobile Chrome browsers support the torch.
 
-**The camera preview looks different compared to the final image.**
+### The camera preview looks different compared to the final image.
 
 This can happen on some filters. There are 2 main reasons for this:
 - CSS and Canvas perform calculations in different colour spaces.

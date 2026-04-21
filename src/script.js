@@ -13,6 +13,7 @@ function initiateCamera () {
         video: {
             width: { min: 1024, ideal: 4096, max: 4006 },
             height: { min: 1024, ideal: 4096, max: 4006 },
+            aspectRatio: 1,
             resizeMode: "crop-and-scale",
             facingMode: camera,
             advanced: [{

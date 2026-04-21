@@ -38,7 +38,7 @@ function initiateCamera() {
 
             // Disable torch button if torch is not available
             if (!stream.getCapabilities().torch) {
-                torchToggle.hidden = true;
+                torchToggle.disabled = true;
             } else {
                 torchToggle.addEventListener('click', function () {
                     torch === !torch;

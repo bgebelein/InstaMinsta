@@ -126,10 +126,10 @@ snap.addEventListener('click', function (e) {
     applyOverlay(getComputedStyle(videoContainer, '::before'));
     applyOverlay(getComputedStyle(videoContainer, '::after'));
 
-    canvas.classList.add('z-10');
+    // Show canvas for 1 second for user feedback that photo was taken
+    canvas.hidden = false;
     setTimeout(() => {
-        canvas.classList.remove('z-10');
-        canvas.classList.add('-z-10');
+        canvas.hidden = true;
     }, 1000);
 
     // convert canvas to dataURL

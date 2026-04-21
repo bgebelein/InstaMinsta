@@ -1,24 +1,25 @@
-# InstaMinsta
+# About Quadra Cam
 
-Attempt to build my own Instagram Camrea App with <s>Blackjack and Hookers</s> fancy filters.
+Quadra Cam is a PWA that mimics the classic Instagram camera functionality.
 
-![Bender](https://i.kym-cdn.com/entries/icons/original/000/010/832/bender.jpg)
+## How it works
 
-Relying on [CSSGRam](https://una.im/CSSgram/) CSS filters for the Camera Preview.
+Quadra Cam uses the MediaStreamTrack API of the browser to get access to your device camera(s).
+The camera live feed is then rendered in a video container with filters and overlays applied to it, in order to show an accurate preview of the final image.
+When tapping the snapshot button, the current video frame will be added to a hidden canvas, where filters + overlays are reapplied.
+Finally the canvas content is written to a dataURL, which can be downloaded.
 
-Recreated the filters in HTML Canvas for the final image.
+Quadra Cam relies on [CSSGRam](https://github.com/una/CSSgram) CSS filters.
 
 ## Demo
 
-[Take it for a test ride!](https://bgebelein.github.io/instaminsta/)
+[Take it for a test ride!](https://quadra-cam.web.app)
 
 ## Features
 
-- Supports back- and frontfacing camera
-
 - 44 different image styles through fancy filters
-
-- Torch light can be turned on/off to use as a camera flash
+- Support for back- and frontfacing cameras
+- Support for torch light
 
 ## Demo
 
@@ -36,6 +37,10 @@ Filters:
 
 ## Known Issues and limitations
 
+### The final image looks "cut off"
+
+Some devices / browsers can not handle the camera stream dimensions properly.
+
 ### Filters do not work on mobile Safari browsers.
 
 Mobile Safari does not support `CanvasRenderingContext2D` filters by default, but you can activate them by going to:
@@ -44,9 +49,9 @@ Mobile Safari does not support `CanvasRenderingContext2D` filters by default, bu
 
 There you can search for `Canvas Filters` and activate the toggle.
 
-### I dont see the torch light button / The torch light does not work.
+### The torch light does not work.
 
-As of today only mobile Chrome browsers support the torch.
+The torch functionality is highly experimental and therefore not supported by every browser.
 
 ### The camera preview looks different compared to the final image.
 

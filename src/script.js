@@ -7,13 +7,12 @@ let videoWidth = 0;
 let videoHeight = 0;
 
 // Start camera
-function initiateCamera () {
+function initiateCamera() {
     navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
             width: { min: 1024, ideal: 4096, max: 4006 },
             height: { min: 1024, ideal: 4096, max: 4006 },
-            aspectRatio: 1,
             resizeMode: "crop-and-scale",
             facingMode: camera,
             advanced: [{
@@ -21,61 +20,68 @@ function initiateCamera () {
             }]
         }
     })
-    .then(function(mediaStream) {
-        // Start stream
-        video.srcObject = mediaStream;
-        video.onloadedmetadata = function(e) {
-            video.play();
-        };
+        .then(function (mediaStream) {
+            // Set stream as video source and start video
+            video.srcObject = mediaStream;
+            video.onloadedmetadata = function (e) {
+                video.play();
+            };
 
-        // Get stream track
-        let stream = mediaStream.getVideoTracks()[0];
-        videoWidth = stream.getSettings().width;
-        videoHeight = stream.getSettings().height;
-        console.log('Camera Resolution: ' + videoWidth + 'x' + videoHeight);
+            // Get stream video track dimensions
+            let stream = mediaStream.getVideoTracks()[0];
+            videoWidth = stream.getSettings().width;
+            videoHeight = stream.getSettings().height;
+            console.log('Camera Resolution: ' + videoWidth + 'x' + videoHeight);
 
-        // Implement torch functionality
-        const torchToggle = document.querySelector('#toggle-torch');
-        torchToggle.addEventListener('click', function() {
-            torch === false ? torch = true : torch = false;
-            stream.applyConstraints({
-                advanced: [{
-                    torch: torch,
-                }]
-            });
-            console.log('Torch: ' + (torch ? 'On' : 'Off'));
-        });
+            // Implement torch functionality
+            const torchToggle = document.querySelector('#toggle-torch');
 
-        // Close camera when page is not active
-        document.addEventListener("visibilitychange", () => {
-            if (document.visibilityState === "visible") {
-                initiateCamera();
-                console.log('Stream re-started');
+            // Disable torch button if torch is not available
+            if (!stream.getCapabilities().torch) {
+                torchToggle.hidden = true;
             } else {
-                stream.stop();
-                console.log('Stream stopped');
+                torchToggle.addEventListener('click', function () {
+                    torch === !torch;
+
+                    stream.applyConstraints({
+                        advanced: [{
+                            torch: torch,
+                        }]
+                    });
+                    console.log('Torch: ' + (torch ? 'On' : 'Off'));
+                });
             }
+
+            // Close camera when page is not active
+            document.addEventListener("visibilitychange", () => {
+                if (document.visibilityState === "visible") {
+                    initiateCamera();
+                    console.log('Stream re-started');
+                } else {
+                    stream.stop();
+                    console.log('Stream stopped');
+                }
+            });
+
+            // Setup canvas - square size matching the smaller video dimension
+            const squareSize = Math.min(videoWidth, videoHeight);
+            canvas.width = squareSize;
+            canvas.height = squareSize;
+            console.log('Canvas size: ' + canvas.width + 'x' + canvas.height);
+        })
+        .catch(function (error) {
+            /* handle error */
+            console.log(error.name + ": " + error.message);
         });
-    
-        // Setup canvas - square size matching the smaller video dimension
-        const squareSize = Math.min(videoWidth, videoHeight);
-        canvas.width = squareSize;
-        canvas.height = squareSize;
-        console.log('Canvas size: ' + canvas.width + 'x' + canvas.height);
-    })
-    .catch(function(error) {
-        /* handle error */
-        console.log(error.name + ": " + error.message);
-    });
 }
 
 initiateCamera();
 
 // Stop Camera
-function stopCamera(){
+function stopCamera() {
     if (video.srcObject) {
         const tracks = video.srcObject.getTracks();
-        tracks.forEach(function(track) {
+        tracks.forEach(function (track) {
             track.stop();
         });
         video.srcObject = null;
@@ -85,7 +91,7 @@ function stopCamera(){
 // Switch camera facingmode
 const cameraSwitch = document.querySelector('#switch-camera');
 
-cameraSwitch.addEventListener('click', function() {
+cameraSwitch.addEventListener('click', function () {
     stopCamera();
     camera === 'user' ? camera = 'environment' : camera = 'user';
     console.log('Facingmode: ' + camera);
@@ -94,15 +100,12 @@ cameraSwitch.addEventListener('click', function() {
 
 // Take snapshot
 const snap = document.querySelector('#snap');
-const ctx =  canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 const photo = document.querySelector('#photo');
 
-snap.addEventListener('click', function(e){
+snap.addEventListener('click', function (e) {
     // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // set opacity
-    ctx.globalAlpha = 1;
 
     // apply filter to canvas
     let filter = getComputedStyle(videoContainer).filter;
@@ -115,7 +118,7 @@ snap.addEventListener('click', function(e){
     const squareSize = Math.min(videoWidth, videoHeight);
     const sx = (videoWidth - squareSize) / 2;
     const sy = (videoHeight - squareSize) / 2;
-    
+
     // Draw cropped square from video center to fill canvas
     ctx.drawImage(video, sx, sy, squareSize, squareSize, 0, 0, canvas.width, canvas.height);
 
@@ -148,52 +151,52 @@ snap.addEventListener('click', function(e){
 const filterSelect = document.querySelector('#filter-selection');
 
 const filters = [
-    {"label": "None", "class": "none"},
-    {"label": "1977", "class": "filter-1977"},
-    {"label": "Aden", "class": "filter-aden"},
-    {"label": "Amaro", "class": "filter-amaro"},
-    {"label": "Ashby", "class": "filter-ashby"},
-    {"label": "Brannan", "class": "filter-brannan"},
-    {"label": "Brooklyn", "class": "filter-brooklyn"},
-    {"label": "Charmes", "class": "filter-charmes"},
-    {"label": "Clarendon", "class": "filter-clarendon"},
-    {"label": "Crema", "class": "filter-crema"},
-    {"label": "Dogpatch", "class": "filter-dogpatch"},
-    {"label": "Earlybird", "class": "filter-earlybird"},
-    {"label": "Gingham", "class": "filter-gingham"},
-    {"label": "Ginza", "class": "filter-ginza"},
-    {"label": "Hefe", "class": "filter-hefe"},
-    {"label": "Helena", "class": "filter-helena"},
-    {"label": "Hudson", "class": "filter-hudson"},
-    {"label": "Inkwell", "class": "filter-inkwell"},
-    {"label": "Kelvin", "class": "filter-kelvin"},
-    {"label": "Juno", "class": "filter-juno"},
-    {"label": "Lark", "class": "filter-lark"},
-    {"label": "Lofi", "class": "filter-lofi"},
-    {"label": "Ludwig", "class": "filter-ludwig"},
-    {"label": "Maven", "class": "filter-maven"},
-    {"label": "Mayfair", "class": "filter-mayfair"},
-    {"label": "Moon", "class": "filter-moon"},
-    {"label": "Nashville", "class": "filter-nashville"},
-    {"label": "Perpetua", "class": "filter-perpetua"},
-    {"label": "Poprocket", "class": "filter-poprocket"},
-    {"label": "Reyes", "class": "filter-reyes"},
-    {"label": "Rise", "class": "filter-rise"},
-    {"label": "Sierra", "class": "filter-sierra"},
-    {"label": "Skyline", "class": "filter-skyline"},
-    {"label": "Slumber", "class": "filter-slumber"},
-    {"label": "Stinson", "class": "filter-stinson"},
-    {"label": "Sutro", "class": "filter-sutro"},
-    {"label": "Toaster", "class": "filter-toaster"},
-    {"label": "Valencia", "class": "filter-valencia"},
-    {"label": "Vesper", "class": "filter-vesper"},
-    {"label": "Walden", "class": "filter-walden"},
-    {"label": "Willow", "class": "filter-willow"},
-    {"label": "xPro II", "class": "filter-xpro-ii"}
+    { "label": "None", "class": "none" },
+    { "label": "1977", "class": "filter-1977" },
+    { "label": "Aden", "class": "filter-aden" },
+    { "label": "Amaro", "class": "filter-amaro" },
+    { "label": "Ashby", "class": "filter-ashby" },
+    { "label": "Brannan", "class": "filter-brannan" },
+    { "label": "Brooklyn", "class": "filter-brooklyn" },
+    { "label": "Charmes", "class": "filter-charmes" },
+    { "label": "Clarendon", "class": "filter-clarendon" },
+    { "label": "Crema", "class": "filter-crema" },
+    { "label": "Dogpatch", "class": "filter-dogpatch" },
+    { "label": "Earlybird", "class": "filter-earlybird" },
+    { "label": "Gingham", "class": "filter-gingham" },
+    { "label": "Ginza", "class": "filter-ginza" },
+    { "label": "Hefe", "class": "filter-hefe" },
+    { "label": "Helena", "class": "filter-helena" },
+    { "label": "Hudson", "class": "filter-hudson" },
+    { "label": "Inkwell", "class": "filter-inkwell" },
+    { "label": "Kelvin", "class": "filter-kelvin" },
+    { "label": "Juno", "class": "filter-juno" },
+    { "label": "Lark", "class": "filter-lark" },
+    { "label": "Lofi", "class": "filter-lofi" },
+    { "label": "Ludwig", "class": "filter-ludwig" },
+    { "label": "Maven", "class": "filter-maven" },
+    { "label": "Mayfair", "class": "filter-mayfair" },
+    { "label": "Moon", "class": "filter-moon" },
+    { "label": "Nashville", "class": "filter-nashville" },
+    { "label": "Perpetua", "class": "filter-perpetua" },
+    { "label": "Poprocket", "class": "filter-poprocket" },
+    { "label": "Reyes", "class": "filter-reyes" },
+    { "label": "Rise", "class": "filter-rise" },
+    { "label": "Sierra", "class": "filter-sierra" },
+    { "label": "Skyline", "class": "filter-skyline" },
+    { "label": "Slumber", "class": "filter-slumber" },
+    { "label": "Stinson", "class": "filter-stinson" },
+    { "label": "Sutro", "class": "filter-sutro" },
+    { "label": "Toaster", "class": "filter-toaster" },
+    { "label": "Valencia", "class": "filter-valencia" },
+    { "label": "Vesper", "class": "filter-vesper" },
+    { "label": "Walden", "class": "filter-walden" },
+    { "label": "Willow", "class": "filter-willow" },
+    { "label": "xPro II", "class": "filter-xpro-ii" }
 ]
 
 // Generate filter selection buttons
-filters.forEach(function(filter){
+filters.forEach(function (filter) {
     let label = document.createElement('label');
     label.setAttribute('for', filter.class);
     label.textContent = filter.label;
@@ -215,8 +218,8 @@ filterSelect.firstChild.checked = true;
 
 const filterButtons = document.querySelectorAll('input[name="filter"]');
 
-filterButtons.forEach(function(button){
-    button.addEventListener('change', function(){
+filterButtons.forEach(function (button) {
+    button.addEventListener('change', function () {
         let seletctedFilter = document.querySelector('input[name="filter"]:checked').value;
         console.log("Selected filter: " + seletctedFilter);
 
@@ -231,9 +234,13 @@ filterButtons.forEach(function(button){
 });
 
 // apply overlay function
-function applyOverlay(overlayElement){
-    // set opacity
-    ctx.globalAlpha = overlayElement.opacity;
+function applyOverlay(overlayElement) {
+    // set blendmode
+    ctx.globalCompositeOperation = overlayElement.mixBlendMode;
+
+    if (overlayElement.opacity !== 1) {
+        ctx.globalAlpha = overlayElement.opacity;
+    }
 
     // set color and add rectangle to canvas
     ctx.fillStyle = overlayElement.backgroundColor;
@@ -257,20 +264,23 @@ function applyOverlay(overlayElement){
         }
 
         ctx.fillStyle = gradient;
-        
+
     } else if (overlayElement.backgroundImage.startsWith('linear-gradient')) {
         let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
 
         // Get gradient values
         let gradientColors = overlayElement.backgroundImage.match(/rgba\(\d+, \d+, \d+, (\d*|(\.\d+)|\d.\d+)\)/g);
+        let gradientStops = [0, 1];
 
         for (let i = 0; i < gradientColors.length; i++) {
-            gradient.addColorStop(i, gradientColors[i]);
+            gradient.addColorStop(gradientStops[i], gradientColors[i]);
+            console.log(gradientStops[i], gradientColors[i]);
         }
-        
+
         ctx.fillStyle = gradient;
     }
 
     // add colored rectangle to canvas
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1;
 }

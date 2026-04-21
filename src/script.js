@@ -108,7 +108,7 @@ snap.addEventListener('click', function (e) {
     videoContainer.classList.add('animate-flash');
     setTimeout(() => {
         videoContainer.classList.remove('animate-flash');
-    }, 100);
+    }, 200);
 
     // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);

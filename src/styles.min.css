@@ -18,7 +18,7 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --animate-flash: flash .1s ease-in-out infinite;
+    --animate-flash: flash .2s ease-in-out infinite;
   }
 }
 @layer base {

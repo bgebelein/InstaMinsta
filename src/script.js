@@ -263,11 +263,9 @@ function applyOverlay(overlayElement){
 
         // Get gradient values
         let gradientColors = overlayElement.backgroundImage.match(/rgba\(\d+, \d+, \d+, (\d*|(\.\d+)|\d.\d+)\)/g);
-        let gradientStops = [0,1];
 
         for (let i = 0; i < gradientColors.length; i++) {
-            gradient.addColorStop(gradientStops[i], gradientColors[i]);
-            console.log(gradientStops[i], gradientColors[i]);
+            gradient.addColorStop(i, gradientColors[i]);
         }
         
         ctx.fillStyle = gradient;

@@ -83,6 +83,7 @@ function stopCamera(){
 
 // Switch camera facingmode
 const cameraSwitch = document.querySelector('#switch-camera');
+
 cameraSwitch.addEventListener('click', function() {
     stopCamera();
     camera === 'user' ? camera = 'environment' : camera = 'user';

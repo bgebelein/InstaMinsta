@@ -104,6 +104,12 @@ const ctx = canvas.getContext('2d');
 const photo = document.querySelector('#photo');
 
 snap.addEventListener('click', function (e) {
+    // Show flash on video preview
+    videoContainer.classList.add('animate-flash');
+    setTimeout(() => {
+        videoContainer.classList.remove('animate-flash');
+    }, 100);
+
     // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 

@@ -526,7 +526,7 @@ label {
   }
 }
 [class*="filter"] {
-  &::before {
+  &::before, &::after {
     content: "";
     display: block;
     height: 100%;
@@ -535,16 +535,6 @@ label {
     left: 0;
     top: 0;
     z-index: 1;
-  }
-  &::after {
-    content: "";
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 2;
   }
   &.filter-1977 {
     filter: contrast(1.1) brightness(1.1) saturate(1.3);

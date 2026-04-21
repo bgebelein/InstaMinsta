@@ -181,6 +181,15 @@
   .relative {
     position: relative;
   }
+  .static {
+    position: static;
+  }
+  .start {
+    inset-inline-start: var(--spacing);
+  }
+  .end {
+    inset-inline-end: var(--spacing);
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
@@ -235,6 +244,9 @@
       display: none;
     }
   }
+  .block {
+    display: block;
+  }
   .contents {
     display: contents;
   }
@@ -246,6 +258,9 @@
   }
   .hidden {
     display: none;
+  }
+  .inline {
+    display: inline;
   }
   .table {
     display: table;
@@ -306,6 +321,11 @@
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
+  }
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .overflow-x-scroll {
     overflow-x: scroll;
@@ -372,6 +392,12 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .lowercase {
+    text-transform: lowercase;
+  }
+  .uppercase {
+    text-transform: uppercase;
   }
   .underline {
     text-decoration-line: underline;

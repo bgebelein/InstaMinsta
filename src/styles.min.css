@@ -175,9 +175,6 @@
   .absolute {
     position: absolute;
   }
-  .fixed {
-    position: fixed;
-  }
   .relative {
     position: relative;
   }
@@ -193,17 +190,8 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
-  .bottom-12 {
-    bottom: calc(var(--spacing) * 12);
-  }
   .left-0 {
     left: calc(var(--spacing) * 0);
-  }
-  .left-1 {
-    left: calc(var(--spacing) * 1);
-  }
-  .-z-10 {
-    z-index: calc(10 * -1);
   }
   .z-10 {
     z-index: 10;
@@ -273,6 +261,9 @@
     width: 100%;
     height: 100%;
   }
+  .h-dvh {
+    height: 100dvh;
+  }
   .max-h-screen {
     max-height: 100vh;
   }
@@ -282,39 +273,17 @@
   .max-w-sm {
     max-width: var(--container-sm);
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
-  .shrink {
-    flex-shrink: 1;
-  }
-  .flex-grow {
-    flex-grow: 1;
-  }
   .grow {
     flex-grow: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .-translate-x-1 {
-    --tw-translate-x: calc(var(--spacing) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
   .touch-manipulation {
     touch-action: manipulation;
-  }
-  .resize {
-    resize: both;
   }
   .snap-x {
     scroll-snap-type: x var(--tw-scroll-snap-strictness);
   }
   .snap-proximity {
     --tw-scroll-snap-strictness: proximity;
-  }
-  .snap-center {
-    scroll-snap-align: center;
   }
   .flex-col {
     flex-direction: column;
@@ -344,10 +313,6 @@
   }
   .rounded-full {
     border-radius: calc(infinity * 1px);
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .bg-black {
     background-color: var(--color-black);
@@ -399,12 +364,11 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .underline {
-    text-decoration-line: underline;
+  .opacity-20 {
+    opacity: 20%;
   }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
+  .opacity-30 {
+    opacity: 30%;
   }
   .outline-2 {
     outline-style: var(--tw-outline-style);
@@ -473,6 +437,12 @@
       border-inline-width: 1px;
     }
   }
+  .before\:border-white {
+    &::before {
+      content: var(--tw-content);
+      border-color: var(--color-white);
+    }
+  }
   .before\:border-white\/35 {
     &::before {
       content: var(--tw-content);
@@ -517,6 +487,12 @@
       content: var(--tw-content);
       border-block-style: var(--tw-border-style);
       border-block-width: 1px;
+    }
+  }
+  .after\:border-white {
+    &::after {
+      content: var(--tw-content);
+      border-color: var(--color-white);
     }
   }
   .after\:border-white\/35 {
@@ -576,9 +552,6 @@
       opacity: 20%;
     }
   }
-}
-body {
-  min-height: 100vh;
 }
 input[type="radio"] {
   display: none;
@@ -939,30 +912,10 @@ label {
     scrollbar-width: initial;
   }
 }
-@property --tw-translate-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-translate-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-translate-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
 @property --tw-scroll-snap-strictness {
   syntax: "*";
   inherits: false;
   initial-value: proximity;
-}
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-leading {
   syntax: "*";
@@ -1031,6 +984,11 @@ label {
   initial-value: "";
   inherits: false;
 }
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
@@ -1042,11 +1000,7 @@ label {
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-translate-x: 0;
-      --tw-translate-y: 0;
-      --tw-translate-z: 0;
       --tw-scroll-snap-strictness: proximity;
-      --tw-border-style: solid;
       --tw-leading: initial;
       --tw-outline-style: solid;
       --tw-blur: initial;
@@ -1063,6 +1017,7 @@ label {
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
       --tw-content: "";
+      --tw-border-style: solid;
       --tw-font-weight: initial;
       --tw-duration: initial;
     }

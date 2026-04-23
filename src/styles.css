@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @plugin 'tailwind-scrollbar';
 
-body {
-  @apply min-h-screen;
-}
-
 input[type="radio"] {
   @apply appearance-none hidden;
 

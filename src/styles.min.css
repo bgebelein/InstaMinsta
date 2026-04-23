@@ -261,14 +261,11 @@
     width: 100%;
     height: 100%;
   }
-  .h-dvh {
-    height: 100dvh;
-  }
   .max-h-screen {
     max-height: 100vh;
   }
-  .min-h-dvh {
-    min-height: 100dvh;
+  .min-h-svh {
+    min-height: 100svh;
   }
   .w-full {
     width: 100%;
@@ -276,20 +273,11 @@
   .max-w-sm {
     max-width: var(--container-sm);
   }
-  .flex-grow {
-    flex-grow: 1;
-  }
   .grow {
     flex-grow: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .touch-manipulation {
     touch-action: manipulation;
-  }
-  .resize {
-    resize: both;
   }
   .snap-x {
     scroll-snap-type: x var(--tw-scroll-snap-strictness);
@@ -326,18 +314,8 @@
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-  }
   .bg-black {
     background-color: var(--color-black);
-  }
-  .bg-black\/20 {
-    background-color: color-mix(in srgb, #000 20%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
-    }
   }
   .bg-white {
     background-color: var(--color-white);
@@ -379,19 +357,6 @@
   }
   .uppercase {
     text-transform: uppercase;
-  }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .opacity-20 {
-    opacity: 20%;
-  }
-  .opacity-30 {
-    opacity: 30%;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .outline-2 {
     outline-style: var(--tw-outline-style);
@@ -474,12 +439,6 @@
       border-inline-width: 1px;
     }
   }
-  .before\:border-white {
-    &::before {
-      content: var(--tw-content);
-      border-color: var(--color-white);
-    }
-  }
   .before\:border-white\/30 {
     &::before {
       content: var(--tw-content);
@@ -526,12 +485,6 @@
       border-block-width: 1px;
     }
   }
-  .after\:border-white {
-    &::after {
-      content: var(--tw-content);
-      border-color: var(--color-white);
-    }
-  }
   .after\:border-white\/30 {
     &::after {
       content: var(--tw-content);
@@ -572,19 +525,6 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-white) 40%, transparent);
       }
-    }
-  }
-  .active\:bg-white\/60 {
-    &:active {
-      background-color: color-mix(in srgb, #fff 60%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        background-color: color-mix(in oklab, var(--color-white) 60%, transparent);
-      }
-    }
-  }
-  .active\:opacity-60 {
-    &:active {
-      opacity: 60%;
     }
   }
   .disabled\:cursor-not-allowed {
@@ -962,11 +902,6 @@ label {
   inherits: false;
   initial-value: proximity;
 }
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-leading {
   syntax: "*";
   inherits: false;
@@ -1038,6 +973,11 @@ label {
   initial-value: "";
   inherits: false;
 }
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
@@ -1046,7 +986,6 @@ label {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-scroll-snap-strictness: proximity;
-      --tw-border-style: solid;
       --tw-leading: initial;
       --tw-outline-style: solid;
       --tw-blur: initial;
@@ -1064,6 +1003,7 @@ label {
       --tw-drop-shadow-size: initial;
       --tw-duration: initial;
       --tw-content: "";
+      --tw-border-style: solid;
       --tw-font-weight: initial;
     }
   }

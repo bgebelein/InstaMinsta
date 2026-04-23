@@ -255,35 +255,46 @@ function applyOverlay(overlayElement) {
     // set blendmode
     ctx.globalCompositeOperation = overlayElement.mixBlendMode;
 
-    // set gradients
-    if (overlayElement.backgroundImage.startsWith('radial-gradient')) {
-        let gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, Math.sqrt((canvas.width / 2) * (canvas.width / 2) + (canvas.width / 2) * (canvas.width / 2)));
+    // Check for gradients
+    if (overlayElement.backgroundImage.includes('gradient')) {
+        // Get gradient color values
+        let gradientColors = [];
+        overlayElement.getPropertyValue('--tw-gradient-from') ? gradientColors.push(overlayElement.getPropertyValue('--tw-gradient-from')) : null;
+        overlayElement.getPropertyValue('--tw-gradient-via') !== "rgba(0, 0, 0, 0)" ? gradientColors.push(overlayElement.getPropertyValue('--tw-gradient-via')) : null;
+        overlayElement.getPropertyValue('--tw-gradient-to') ? gradientColors.push(overlayElement.getPropertyValue('--tw-gradient-to')) : null;
+        console.log(gradientColors);
 
-        // Get gradient values
-        let gradientColors = overlayElement.backgroundImage.match(/rgba\(\d+, \d+, \d+, (\d*|(\.\d+)|\d.\d+)\)/g);
-        let gradientStops = overlayElement.backgroundImage.match(/\) \d+/g);
+        // Get gradient stop values
+        let gradientStops = [];
+        overlayElement.getPropertyValue('--tw-gradient-from-position') ? gradientStops.push(overlayElement.getPropertyValue('--tw-gradient-from-position')) : null;
+        overlayElement.getPropertyValue('--tw-gradient-via-position') !== "50%" ? gradientStops.push(overlayElement.getPropertyValue('--tw-gradient-via-position')) : null;
+        overlayElement.getPropertyValue('--tw-gradient-to-position') ? gradientStops.push(overlayElement.getPropertyValue('--tw-gradient-to-position')) : null;
+        console.log(gradientStops);
 
-        for (let i = 0; i < gradientColors.length; i++) {
-            gradientStops[i] = gradientStops[i].replace(') ', '');
-            gradientStops[i] = parseInt(gradientStops[i]) / 100;
-            gradient.addColorStop(gradientStops[i], gradientColors[i]);
+        if (overlayElement.backgroundImage.startsWith('radial-gradient')) {
+            // Set radial gradient
+            let gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, Math.sqrt((canvas.width / 2) * (canvas.width / 2) + (canvas.width / 2) * (canvas.width / 2)));
+
+            for (let i = 0; i < gradientColors.length; i++) {
+                gradientStops[i] = parseInt(gradientStops[i]) / 100;
+                gradient.addColorStop(gradientStops[i], gradientColors[i]);
+            }
+
+            ctx.fillStyle = gradient;
+
+        } else if (overlayElement.backgroundImage.startsWith('linear-gradient')) {
+            // Set linear gradient
+            let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+
+            for (let i = 0; i < gradientColors.length; i++) {
+                const stop = gradientStops[i]
+                    ? parseFloat(gradientStops[i]) / 100
+                    : gradientColors.length === 1 ? 0 : i / (gradientColors.length - 1);
+                gradient.addColorStop(stop, gradientColors[i]);
+            }
+
+            ctx.fillStyle = gradient;
         }
-
-        ctx.fillStyle = gradient;
-
-    } else if (overlayElement.backgroundImage.startsWith('linear-gradient')) {
-        let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-
-        // Get gradient values
-        let gradientColors = overlayElement.backgroundImage.match(/rgba\(\d+, \d+, \d+, (\d*|(\.\d+)|\d.\d+)\)/g);
-        let gradientStops = [0, 1];
-
-        for (let i = 0; i < gradientColors.length; i++) {
-            gradient.addColorStop(gradientStops[i], gradientColors[i]);
-            console.log(gradientStops[i], gradientColors[i]);
-        }
-
-        ctx.fillStyle = gradient;
     }
 
     // add colored rectangle to canvas

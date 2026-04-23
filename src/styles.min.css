@@ -364,9 +364,6 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .opacity-20 {
-    opacity: 20%;
-  }
   .opacity-30 {
     opacity: 30%;
   }
@@ -382,6 +379,20 @@
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
   }
   .\*\:cursor-pointer {
     :is(& > *) {
@@ -443,15 +454,6 @@
       border-color: var(--color-white);
     }
   }
-  .before\:border-white\/35 {
-    &::before {
-      content: var(--tw-content);
-      border-color: color-mix(in srgb, #fff 35%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 35%, transparent);
-      }
-    }
-  }
   .after\:absolute {
     &::after {
       content: var(--tw-content);
@@ -495,15 +497,6 @@
       border-color: var(--color-white);
     }
   }
-  .after\:border-white\/35 {
-    &::after {
-      content: var(--tw-content);
-      border-color: color-mix(in srgb, #fff 35%, transparent);
-      @supports (color: color-mix(in lab, red, red)) {
-        border-color: color-mix(in oklab, var(--color-white) 35%, transparent);
-      }
-    }
-  }
   .hover\:bg-white\/80 {
     &:hover {
       @media (hover: hover) {
@@ -526,6 +519,14 @@
       background-color: color-mix(in srgb, #000 40%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
+      }
+    }
+  }
+  .active\:bg-white\/40 {
+    &:active {
+      background-color: color-mix(in srgb, #fff 40%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-white) 40%, transparent);
       }
     }
   }
@@ -979,6 +980,10 @@ label {
   syntax: "*";
   inherits: false;
 }
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-content {
   syntax: "*";
   initial-value: "";
@@ -990,10 +995,6 @@ label {
   initial-value: solid;
 }
 @property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-duration {
   syntax: "*";
   inherits: false;
 }
@@ -1016,10 +1017,10 @@ label {
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-duration: initial;
       --tw-content: "";
       --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-duration: initial;
     }
   }
 }

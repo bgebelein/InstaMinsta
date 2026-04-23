@@ -28,7 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
 
-  <body class="flex h-dvh touch-manipulation flex-col bg-black">
+  <body class="flex min-h-dvh touch-manipulation flex-col bg-black">
     <header class="grow content-center">
       <div id="camera" class="relative mx-auto aspect-square max-h-screen">
         <video
@@ -41,7 +41,7 @@
         </video>
         <div
           id="grid"
-          class="absolute top-0 left-0 size-full opacity-30 before:absolute before:left-1/3 before:block before:h-full before:w-1/3 before:border-x before:border-white after:absolute after:top-1/3 after:block after:h-1/3 after:w-full after:border-y after:border-white"
+          class="absolute top-0 left-0 size-full before:absolute before:left-1/3 before:block before:h-full before:w-1/3 before:border-x before:border-white/30 after:absolute after:top-1/3 after:block after:h-1/3 after:w-full after:border-y after:border-white/30"
         ></div>
 
         <canvas class="absolute top-0 left-0 z-10 size-full" hidden></canvas>

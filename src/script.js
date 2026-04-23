@@ -122,6 +122,9 @@ snap.addEventListener('click', function (e) {
     // Draw cropped square from video center to fill canvas
     ctx.drawImage(video, sx, sy, squareSize, squareSize, 0, 0, canvas.width, canvas.height);
 
+    // Reset filter so overlays are not affected
+    ctx.filter = 'none';
+
     // apply overlays to canvas
     applyOverlay(getComputedStyle(videoContainer, '::before'));
     applyOverlay(getComputedStyle(videoContainer, '::after'));
